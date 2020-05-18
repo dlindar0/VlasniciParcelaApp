@@ -1,0 +1,76 @@
+﻿@model VlasniciParcelaApp.Models.GradViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<form asp-controller="Home" asp-action="Search">
+    <h1>Pretraži Vlasnike</h1>
+    <p>Unesite parametre pretraživanja.</p>
+    <label for="ime">Ime:</label>
+    <br />
+    <input type="text" name="SearchIme" id="ime">
+    <br />
+    <label for="prezime">Prezime:</label>
+    <br />
+    <input type="text" name="SearchPrezime" id="prezime">
+    <br />
+    <label for="oib">OIB:</label>
+    <br />
+    <input type="text" name="SearchOIB" id="oib" minlength="11" maxlength="11">
+    <br />
+    <label for="adresa">Adresa:</label>
+    <br />
+    <input type="text" name="SearchAdresa" id="adresa">
+    <br />
+    <label for="grad">Grad:</label>
+    <br />
+    <select asp-for="SearchGrad" asp-items="Model.Gradovi" id="grad">
+        <option value=""></option>
+    </select>
+    <p></p>
+    <input type="submit" value="Traži" />
+</form>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vlasnici[0].Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vlasnici[0].Prezime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vlasnici[0].Adresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vlasnici[0].Grad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Vlasnici) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grad)
+            </td>
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>
